@@ -1,7 +1,9 @@
 package m17btesteg12;
 
-public class Janela extends javax.swing.JFrame {
+import javax.swing.JOptionPane;
 
+public class Janela extends javax.swing.JFrame {
+//https://github.com/Dotiie/M17TesteAval
    public Janela() {
       initComponents();
    }
@@ -62,22 +64,29 @@ public class Janela extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
    private void botaoVerificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVerificarActionPerformed
-      
-      int numero = Integer.parseInt(campoNumero.getText());
-      int i;
-      boolean bandeira;
-      bandeira = false;
-      for(i=2;i<numero/2;i++){
-         if(numero%i == 0){
-            bandeira = true;
-         }
-      }
-      if(bandeira){
-         labelPrimoSN.setText("é primo");      
-      }
-      else{
-         labelPrimoSN.setText("não é primo");      
-      }
+       if(campoNumero.getText().length() == 0)
+           JOptionPane.showMessageDialog(null, "O campo está vazio", "Erro!", 0);
+       else{
+            try{            
+                int numero = Integer.parseInt(campoNumero.getText());
+                int i;
+                boolean bandeira;
+                bandeira = true;
+                for(i=2;i<=numero/2;i++){
+                    if(numero%i == 0){
+                        bandeira = false;
+                    }
+                }
+                if(bandeira){
+                   labelPrimoSN.setText("é primo");      
+                }
+                else{
+                   labelPrimoSN.setText("não é primo");      
+                }
+            }catch(NumberFormatException e){
+              JOptionPane.showMessageDialog(null, "Não foi introduzido um número!!", "Erro!", 0);
+            }
+       }
    }//GEN-LAST:event_botaoVerificarActionPerformed
 
    public static void main(String args[]) {
